@@ -1,0 +1,18 @@
+@font-face {
+  font-family: 'Fascinate Inline';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Fascinate Inline'), local('FascinateInline-Regular'), url(http://themes.googleusercontent.com/static/fonts/fascinateinline/v2/lRguYfMfWArflkm5aOQ5QNNNRtILQnhF8IuY18ihom0.woff) format('woff');
+}
+@font-face {
+  font-family: 'Fauna One';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Fauna One'), local('FaunaOne-Regular'), url(http://themes.googleusercontent.com/static/fonts/faunaone/v1/cSd7NBXNFQWK4oX1706dY7O3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
+}
+@font-face {
+  font-family: 'Pathway Gothic One';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Pathway Gothic One'), local('PathwayGothicOne-Regular'), url(http://themes.googleusercontent.com/static/fonts/pathwaygothicone/v1/Lqv9ztoTUV8Q0FmQZzPqaCwPNT-0fYl5GOmbcpnDW5g.woff) format('woff');
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:og="http://opengraphprotocol.org/schema/" xmlns:mml="http://www.w3.org/1998/Math/MathML" itemtype="http://schema.org/Organization" itemscope="">
+  <head>
+    <title>panoviwer</title>
+
+    <link rel="stylesheet" type="text/css" href="/static/lib/jquery-ui/css/smoothness/jquery-ui.css" />
+
+    <link href="/static/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" / -->
+    <!--link href='/static/css/docs.css' rel='stylesheet' type='text/css' -->
+    <link href='/static/css/fauna_one.css' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <link rel="stylesheet" href="/static/css/pv.css" />
+  </head>
+
+  <body style="overflow-y:hidden;">
+
+<div class="pv-scene" id="pv_scene_tmp">
+  <div id="pv_canvas__" z-index=1>
+  </div>
+
+  <div id="pv_floorplan_nav" style="position: absolute; left; 0px; top: 0px; width: 30; height: 30; z-index:4; visibility:hidden">
+    <a href=# id="floorplan-nav-btn">>></a>
+  </div>
+
+  <div id="pv_floor__" style="position: absolute; left; 0px; top: 20px; width: 20%; height: 300; z-index:2;visibility:hidden">
+    <p> Floor Plan </p>
+
+    <img id="pv_floor_image" src="#" alt="Floor Plan">
+  </div>
+
+  <div class="toolbox" id="toolbox" style="width: 260px; height: 60px; z-index: 0; text-align: left; position: absolute; right: 1px; bottom: 5px;">
+    <div style="position: absolute; left: 0px; top: 0px; width: 90px; height: 90px; overflow: hidden;"><div style="width: 90px; height: 90px; overflow: hidden; visibility: hidden;">
+	<img src="//maps.gstatic.com/mapfiles/compass_spr2.png" style="position: absolute; left: 0px; top: 0px; border: 0px; padding: 0px; margin: 0px;"></div>
+    </div>
+
+    <div style="position: absolute; left: 0px; top: 0px; width: 90px; height: 90px;">
+      <div style="position: absolute; left: 16px; top: 17px; width: 59px; height: 62px; overflow: hidden;">
+	<img src="//maps.gstatic.com/mapfiles/mapcontrols3d7.png" style="position: absolute; left: 0px; top: 0px; border: 0px; padding: 0px; margin: 0px;"></div>
+    </div>
+
+    <div id="compass" style="position: absolute; left: 0px; top: 0px; width: 90px; height: 90px;">
+      <div title="Up" id="pan_up" style="position: absolute; left: 36px; top: 17px; width: 18px; height: 18px; cursor: pointer;"></div>
+      <div title="Left" id="pan_lt" style="position: absolute; left: 16px; top: 37px; width: 18px; height: 18px; cursor: pointer;"></div>
+      <div title="Right" id="pan_rt" style="position: absolute; left: 56px; top: 37px; width: 18px; height: 18px; cursor: pointer;"></div>
+      <div title="Down" id="pan_down" style="position: absolute; left: 36px; top: 57px; width: 18px; height: 18px; cursor: pointer;"></div>
+      <div title="Return to the last result" id="center_result" style="position: absolute; left: 36px; top: 37px; width: 18px; height: 18px; cursor: pointer;"></div>
+    </div>
+
+    <div style="position: absolute; left: 80px; top: 35px; width: 22px; height: 22px; overflow: hidden; z-index: 10001;">
+      <div style="width: 22px; height: 22px; overflow: hidden; position: absolute;">
+	<img src="//maps.gstatic.com/mapfiles/mapcontrols3d7.png" style="position: absolute; left: -18px; top: -399px; border: 0px; padding: 0px; margin: 0px;"></div>
+      <div title="Zoom In" id="zoom_in" style="position: absolute; left: -2px; top: 0px; width: 22px; height: 22px; cursor: pointer;"></div>
+    </div>
+
+    <div style="position: absolute; left: 100px; top: 37px; width: 22px; height: 22px; text-align: left; z-index: 10003;">
+      <div style="width: 22px; height: 22px; overflow: hidden; position: absolute;">
+	<img src="//maps.gstatic.com/mapfiles/mapcontrols3d7.png" style="position: absolute; left: -18px; top: -361px; border: 0px; padding: 0px; margin: 0px;">
+      </div>
+      <div title="Zoom Out" id="zoom_out" style="position: absolute; left: 2px; top: -4px; width: 22px; height: 22px; cursor: pointer;"></div>
+    </div>
+
+    <div id="lmczb" style="position: absolute; left: 35px; top: 171px; width: 22px; height: 150px; z-index: 10002; cursor: pointer; visibility:hidden">
+      <div id="lmczbg" title="Drag to zoom" style="width: 22px; height: 14px; overflow: hidden; position: absolute; cursor: url(https://maps.gstatic.com/intl/en_au/mapfiles/openhand_8_8.cur) 8 8, default; left: 0px; top: 96px;"><img src="//maps.gstatic.com/mapfiles/mapcontrols3d7.png" style="position: absolute; left: 0px; top: -384px; border: 0px; padding: 0px; margin: 0px;"></div>
+    </div>
+
+    <div><div id="my_location_button" dir="ltr" class="mb-floating-btn" jsaction="click:myLocation.select" log="ml"><div id="my_location_button_inactive" title="Show My Location" style=""></div><div id="my_location_button_inner" class="" title="My Location is active" style="display: none;"><div id="my_location_button_inner_sprite"></div></div></div></div><div id="cbctl" class="gmnoprint" style="position: absolute; left: 16px; top: 121px; z-index: 10000;"><div id="cb_launchpad" style="position: absolute; left: 0px; top: 0px; z-index: 1;"><div style="width: 30px; height: 32px; overflow: hidden; position: absolute; left: 14px; top: 0px; display: none;"><img src="//maps.gstatic.com/mapfiles/mapcontrols3d7.png" style="position: absolute; left: 0px; top: -460px; border: 0px; padding: 0px; margin: 0px;"></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 2;"><div id="launchpad_empty" style="width: 30px; height: 32px; overflow: hidden; display: none; position: absolute; left: 14px; top: 0px;"><img src="https://maps.gstatic.com/intl/en_au/mapfiles/cb/mod_cb_scout/cb_scout_sprite_004.png" style="position: absolute; left: -98px; top: -849px; border: 0px; padding: 0px; margin: 0px;"></div></div><div style="z-index: 1000; position: absolute; left: 14px; top: 0px;"><div style="width: 16px; height: 52px; position: absolute; left: -10px; top: -10px;"></div><div style="width: 16px; height: 52px; position: absolute; left: 25px; top: -10px;"></div><div style="width: 19px; height: 10px; position: absolute; left: 6px; top: -10px;"></div></div><div class="gmnoprint" style="position: absolute; left: 5px; top: -10px; z-index: 3;">
+
+	<div id="cb_scout_bubble" style="position: absolute; display: none;"><div style="width: 120px; height: 140px; overflow: hidden; position: absolute; left: -35px; top: -123px; display: none;"><img src="https://maps.gstatic.com/intl/en_au/mapfiles/cb/mod_cb_scout/cb_scout_sprite_004.png" style="position: absolute; left: 0px; top: -537px; border: 0px; padding: 0px; margin: 0px;"></div><div style="width: 30px; height: 30px; overflow: hidden; z-index: 1; position: absolute; left: 10px; top: -30px; display: none;"><img src="https://maps.gstatic.com/intl/en_au/mapfiles/cb/mod_cb_scout/cb_scout_sprite_004.png" style="position: absolute; left: 0px; top: -677px; border: 0px; padding: 0px; margin: 0px;"></div><div style="z-index: 4; position: absolute; background-color: transparent; padding: 0px; width: 94px; overflow: hidden; height: 33px; left: -22px; top: -26px; display: none;">
+
+	    <div id="cb_scout_bubble_txt" class="legal" style="z-index: 4; position: absolute; background-color: white; padding: 0px; font-size: 9px; width: 94px; overflow: hidden; left: 0px; top: 0px; display: none;"></div></div>
+
+	  <div id="cb_scout_bubble_inv_title" class="legal" style="width: 93px; height: 77px; z-index: 6; display: none; position: absolute; padding: 0px; font-size: 10px; text-align: center; left: -22px; top: -36px;">
+
+	  </div><div id="cb_scout_bubble_inv_txt" style="width: 93px; height: 77px; z-index: 5; display: none; position: absolute; padding: 0px; font-size: 13px; overflow: auto; text-align: center; left: -22px; top: -111px;">Drag me to the map!</div>
+	  <div id="cb_scout_bubble_thumb" style="width: 120px; height: 140px; z-index: 2; position: absolute; left: -22px; top: -116px; display: none; opacity: 0.25;"></div><div id="cb_scout_bubble_inv" style="width: 93px; height: 77px; overflow: hidden; z-index: 3; display: none; position: absolute; left: -22px; top: -116px;"><img src="https://maps.gstatic.com/intl/en_au/mapfiles/cb/mod_cb_scout/cb_scout_sprite_004.png" style="position: absolute; left: 0px; top: -236px; border: 0px; padding: 0px; margin: 0px;"></div></div><div id="cb_scout_locking" style="position: absolute; display: none; z-index: 10002;"><div style="position: absolute; left: 10px; top: 40px; z-index: 200;"><img src="//maps.gstatic.com/mapfiles/cb/target_locking.gif"></div><div style="width: 49px; height: 52px; overflow: hidden; position: absolute; left: 10px; top: 40px; z-index: 100;"><div style="width: 49px; height: 52px; overflow: hidden;"><img src="https://maps.gstatic.com/intl/en_au/mapfiles/cb/mod_cb_scout/cb_scout_sprite_004.png" style="position: absolute; left: 0px; top: -184px; border: 0px; padding: 0px; margin: 0px;"></div></div></div><div style="width: 49px; height: 52px; overflow: hidden; position: absolute;">
+
+	</div>
+
+  </div></div></div>
+</div>
+
+  </body>
+  <script src="/static/lib/jquery/jquery.js"></script>
+  <script src="/static/lib/jquery-ui/js/jquery-ui.min.js"></script>
+  <script src="/static/lib/bootstrap/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/static/lib/three.js"></script>
+  <script type="text/javascript" src="/static/lib/Detector.js"></script>
+  <script type="text/javascript" src="/static/lib/CSS3DRenderer.js"></script>
+  <script type="text/javascript" src="/static/lib/pvv.js"></script>
+</html>
